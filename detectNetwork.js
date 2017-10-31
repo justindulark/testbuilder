@@ -36,7 +36,8 @@ var detectNetwork = function(cardNumber) {
   	return 'Maestro';
   }
   else if ((parseInt(cardNumber.slice(0,6)) >= 622126 && parseInt(cardNumber.slice(0,6)) <= 622925) || 
-  	(parseInt(cardNumber.slice(0,3) >= 624 && parseInt(cardNumber.slice(0,3)) <= 626)) && (cardNumber.length >= 16 && cardNumber.length <= 19)) {
+  	(parseInt(cardNumber.slice(0,3)) >= 624 && parseInt(cardNumber.slice(0,3)) <= 626) || ((parseInt(cardNumber.slice(0,4)) >= 6282) && (parseInt(cardNumber.slice(0,4)) <= 6288)) && 
+  	(cardNumber.length >= 16 && cardNumber.length <= 19)) {
   	return 'China UnionPay';
   }
   else if ((cardNumber.slice(0,4) === '4903' || cardNumber.slice(0,4) === '4905' || cardNumber.slice(0,4) === '4911' || cardNumber.slice(0,4) === '4936' ||
