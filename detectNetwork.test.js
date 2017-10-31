@@ -295,5 +295,19 @@ describe('Maestro', function() {
   });
 });
 
-describe('should support China UnionPay')
+describe('China UnionPay', function () {
+  var should = chai.should();
+  var testCard = '622';
+  for(var x = 126; x <= 925; x++) {
+    testCard = '622' + x.toString();
+    for(var y = 16; y <= 19; y++) {
+      for(var z = 0; z <= y; z++) {
+        testCard = testCard + '1'
+      }
+      it('has a prefix of 622' + x.toString() + ' and has a length of ' + y.toString(), function() {
+        detectNetwork(testCard).should.equal('China UnionPay');
+      });
+    }
+  }
+});
 describe('should support Switch')
