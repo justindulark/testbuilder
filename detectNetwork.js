@@ -19,7 +19,8 @@ var detectNetwork = function(cardNumber) {
   else if ((cardNumber.slice(0,2) === '34' || cardNumber.slice(0,2) === '37') && (cardNumber.length === 15)) {
   	return "American Express";
   }
-  else if (cardNumber.slice(0,1) === '4' && (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19)) {
+  else if (cardNumber.slice(0,1) === '4' && (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19) 
+  	&& (cardNumber.slice(0,4) !== '4903' && cardNumber.slice(0,4) !== '4905' && cardNumber !== '4911' && cardNumber !== '4936')) {
   	return "Visa";
   }
   else if ((cardNumber.slice(0,2) === '51' || cardNumber.slice(0,2) === '52' || cardNumber.slice(0,2) === '53' 
@@ -43,7 +44,6 @@ var detectNetwork = function(cardNumber) {
   	(cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19)) {
   	return 'Switch';
   }
-
   return 'None';
 };
 Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19.
