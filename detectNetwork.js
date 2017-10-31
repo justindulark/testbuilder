@@ -46,5 +46,5 @@ var detectNetwork = function(cardNumber) {
   }
   return 'None';
 };
-Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19.
+
 
