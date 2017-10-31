@@ -307,6 +307,7 @@ describe('China UnionPay', function () {
       for(var z = testCard.length; z < y; z++) {
         testCard = testCard + '1'
       }
+      console.log(testCard, testCard.length)
       it('has a prefix of 622' + x.toString() + ' and has a length of ' + y.toString(), function() {
         detectNetwork(testCard).should.equal('China UnionPay');
       });
@@ -315,7 +316,7 @@ describe('China UnionPay', function () {
   for(x = 624; x <= 626; x++) {
     testCard = x.toString();
     for(y = 16; y <= 19; y++) {
-      for(z = testCard.length; z <= y; z++) {
+      for(z = testCard.length; z < y; z++) {
         testCard = testCard + '1'
       }
       it('has a prefix of ' + x.toString() + ' and has a length of ' + y.toString(), function() {
@@ -326,15 +327,17 @@ describe('China UnionPay', function () {
   for(x = 6282; x <= 6288; x++) {
     testCard = x.toString();
     for(y = 16; y <= 19; y++) {
-      for(z = testCard.length; z <= y; z++) {
+      for(z = testCard.length; z < y; z++) {
         testCard = testCard + '1'
       }
+      console.log(testCard, testCard.length);
       it('has a prefix of ' + x.toString() + ' and has a length of ' + y.toString(), function() {
         detectNetwork(testCard).should.equal('China UnionPay');
       });
     }
   }
 });
+
 /*
 describe('Switch', function (){
   var should = chai.should();
