@@ -360,21 +360,18 @@ describe('Switch', function () {
     for (var y = 0; y < 16 - prefix.length; y++) {
       testCard = testCard + '1';
     }
-    console.log(testCard, testCard.length);
     (function (prefix, testCard) {
       it('has a prefix of ' + prefix + ' and has a length of ' + 16, function() {
         detectNetwork(testCard).should.equal('Switch');
       });      
     })(prefix, testCard)
     testCard = testCard + '11';
-        console.log(testCard, testCard.length);
     (function (prefix, testCard) {
       it('has a prefix of ' + prefix + ' and has a length of ' + 18, function() {
         detectNetwork(testCard).should.equal('Switch');
       });      
     })(prefix, testCard)
     testCard = testCard + '1';
-        console.log(testCard, testCard.length);
     (function (prefix, testCard) {
       it('has a prefix of ' + prefix + ' and has a length of ' + 19, function() {
         detectNetwork(testCard).should.equal('Switch');
