@@ -297,57 +297,88 @@ describe('Maestro', function() {
 
 describe('China UnionPay', function () {
   var should = chai.should();
-  var testCard = '622';
   for (var x = 126; x <= 925; x++) {
-    testCard = '622' + x.toString();
-    for (var y = 16; y <= 19; y++) {
-      for (var z = testCard.length; z < y; z++) {
-        testCard = testCard + '1'
-      }
-      it('has a prefix of 622' + x.toString() + ' and has a length of ' + y.toString(), function() {
-        detectNetwork(testCard).should.equal('China UnionPay');
+    (function (x) {
+      it('has a prefix of 622' + x.toString() + ' and has a length of ' + 16, function() {
+        detectNetwork('622' + x + '1234567890').should.equal('China UnionPay');
       });
-    }
+      it('has a prefix of 622' + x.toString() + ' and has a length of ' + 17, function() {
+        detectNetwork('622' + x + '12345678901').should.equal('China UnionPay');
+      });
+      it('has a prefix of 622' + x.toString() + ' and has a length of ' + 18, function() {
+        detectNetwork('622' + x + '123456789012').should.equal('China UnionPay');
+      });
+      it('has a prefix of 622' + x.toString() + ' and has a length of ' + 19, function() {
+        detectNetwork('622' + x + '1234567890123').should.equal('China UnionPay');
+      });
+    })(x)
   }
+
   for (x = 624; x <= 626; x++) {
-    testCard = x.toString();
-    for (y = 16; y <= 19; y++) {
-      for (z = testCard.length; z < y; z++) {
-        testCard = testCard + '1'
-      }
-      it('has a prefix of ' + x.toString() + ' and has a length of ' + y.toString(), function() {
-        detectNetwork(testCard).should.equal('China UnionPay');
+    (function (x) {
+      it('has a prefix of ' + x.toString() + ' and has a length of ' + 16, function() {
+        detectNetwork(x.toString() + '1234567890123').should.equal('China UnionPay');
       });
-    }
+      it('has a prefix of ' + x.toString() + ' and has a length of ' + 17, function() {
+        detectNetwork(x.toString() + '12345678901234').should.equal('China UnionPay');
+      });
+      it('has a prefix of ' + x.toString() + ' and has a length of ' + 18, function() {
+        detectNetwork(x.toString() + '123456789012345').should.equal('China UnionPay');
+      });
+      it('has a prefix of ' + x.toString() + ' and has a length of ' + 19, function() {
+        detectNetwork(x.toString() + '1234567890123456').should.equal('China UnionPay');
+      });
+    })(x)
   }
   for (x = 6282; x <= 6288; x++) {
-    testCard = x.toString();
-    for (y = 16; y <= 19; y++) {
-      for (z = testCard.length; z < y; z++) {
-        testCard = testCard + '1'
-      }
-      it('has a prefix of ' + x.toString() + ' and has a length of ' + y.toString(), function() {
-        detectNetwork(testCard).should.equal('China UnionPay');
+    (function (x) {
+      it('has a prefix of ' + x.toString() + ' and has a length of ' + 16, function() {
+        detectNetwork(x.toString() + '123456789012').should.equal('China UnionPay');
       });
-    }
+      it('has a prefix of ' + x.toString() + ' and has a length of ' + 17, function() {
+        detectNetwork(x.toString() + '1234567890123').should.equal('China UnionPay');
+      });
+      it('has a prefix of ' + x.toString() + ' and has a length of ' + 18, function() {
+        detectNetwork(x.toString() + '12345678901234').should.equal('China UnionPay');
+      });
+      it('has a prefix of ' + x.toString() + ' and has a length of ' + 19, function() {
+        detectNetwork(x.toString() + '123456789012345').should.equal('China UnionPay');
+      });
+    })(x)
   }
 });
 
 
 describe('Switch', function () {
   var should = chai.should();
-  var cardPrefixes = ['4903', '4905', '4911', '4936', '564182', '633110', '6333', '6759'];
-  var cardLengths = [16, 18, 19];
-  var testCard = '';
+  var cardPrefixes = ['4903', '4905', '4911', '4936', '6333', '6759', '564182', '633110'];
+  var prefix;
+  var testCard;
   for (var x = 0; x < cardPrefixes.length; x++) {
-    testCard = cardPrefixes[x]
-    for (var y = 0; y < cardLengths.length; y++) {
-      for (var z = testCard.length; z < cardLengths[y]; z++) {
-        testCard = testCard + '1'
-      }
-      it('has a prefix of ' + cardPrefixes[x] + ' and has a length of ' + cardLengths[y], function() {
-        detectNetwork(testCard).should.equal('Switch');
-      });
+    prefix = cardPrefixes[x];
+    testCard = prefix;
+    for (var y = 0; y < 16 - prefix.length; y++) {
+      testCard = testCard + '1';
     }
+    console.log(testCard, testCard.length);
+    (function (prefix, testCard) {
+      it('has a prefix of ' + prefix + ' and has a length of ' + 16, function() {
+        detectNetwork(testCard).should.equal('Switch');
+      });      
+    })(prefix, testCard)
+    testCard = testCard + '11';
+        console.log(testCard, testCard.length);
+    (function (prefix, testCard) {
+      it('has a prefix of ' + prefix + ' and has a length of ' + 18, function() {
+        detectNetwork(testCard).should.equal('Switch');
+      });      
+    })(prefix, testCard)
+    testCard = testCard + '1';
+        console.log(testCard, testCard.length);
+    (function (prefix, testCard) {
+      it('has a prefix of ' + prefix + ' and has a length of ' + 19, function() {
+        detectNetwork(testCard).should.equal('Switch');
+      });      
+    })(prefix, testCard)
   }
 });
